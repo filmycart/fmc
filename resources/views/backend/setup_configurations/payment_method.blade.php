@@ -921,5 +921,44 @@
                 </div>
             </div>
 
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0 h6">{{ translate('gpay') }}</h5>
+                    </div>
+                    <div class="card-body">
+                        <form class="form-horizontal" action="{{ route('payment_method.update') }}" method="POST" enctype="multipart-formdata">
+                            @csrf
+                            <input type="hidden" name="payment_method" value="gpay">
+                            <div class="form-group row">
+                                <input type="hidden" name="types[]" value="GPAY_UPI_ID">
+                                <div class="col-lg-4">
+                                    <label class="col-from-label">{{ translate('GPAY_UPI_ID') }}</label>
+                                </div>
+                                <div class="col-lg-8">
+                                    <input type="text" class="form-control" name="GPAY_UPI_ID"
+                                        value="{{ env('GPAY_UPI_ID') }}"
+                                        placeholder="{{ translate('GPAY_UPI_ID') }}" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <input type="hidden" name="types[]" value="gpay">
+                                <div class="col-lg-4">
+                                    <label class="col-from-label">{{ translate('GPAY_QR_CODE') }}</label>
+                                </div>
+                                <div class="col-lg-8">
+                                    <input type="file" class="form-control" name="GPAY_QR_CODE"
+                                        value="{{ env('GPAY_QR_CODE') }}"
+                                        placeholder="{{ translate('GPAY_QR_CODE') }}" required>
+                                </div>
+                            </div>
+                            <div class="form-group mb-0 text-right">
+                                <button type="submit" class="btn btn-sm btn-primary">{{ translate('Save') }}</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
         </div>
     @endsection
