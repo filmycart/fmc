@@ -270,9 +270,8 @@
 
             <!-- Seller & Delivery Boy -->
             @if ((get_setting('vendor_system_activation') == 1) || addon_is_activated('delivery_boy'))
-            <div class="col-lg-3 col-md-4 col-sm-6">
+            <!-- <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="text-center text-sm-left mt-4">
-                    <!-- Seller -->
                     @if (get_setting('vendor_system_activation') == 1)
                         <h4 class="fs-14 text-secondary text-uppercase fw-700 mb-3">{{ translate('Seller Zone') }}</h4>
                         <ul class="list-unstyled">
@@ -299,7 +298,6 @@
                         </ul>
                     @endif
 
-                    <!-- Delivery Boy -->
                     @if (addon_is_activated('delivery_boy'))
                         <h4 class="fs-14 text-secondary text-uppercase fw-700 mt-4 mb-3">{{ translate('Delivery Boy') }}</h4>
                         <ul class="list-unstyled">
@@ -321,7 +319,7 @@
                         </ul>
                     @endif
                 </div>
-            </div>
+            </div> -->
             @endif
         </div>
     </div>
