@@ -2,12 +2,12 @@
 
 @section('content')
     <!-- Sliders & Today's deal -->
-    <div class="home-banner-area mb-3" style="">
+    <div class="home-banner-area mb-3">
         <div class="container">
             <div class="d-flex flex-wrap position-relative">
-                <div class="position-static d-none d-xl-block">
+                <!-- <div class="position-static d-none d-xl-block">
                     @include('frontend.partials.category_menu')
-                </div>
+                </div> -->
 
                 <!-- Sliders -->
                 <div class="home-slider">
@@ -15,10 +15,10 @@
                         <div class="aiz-carousel dots-inside-bottom mobile-img-auto-height" data-autoplay="true">
                             @php $slider_images = json_decode(get_setting('home_slider_images'), true);  @endphp
                             @foreach ($slider_images as $key => $value)
-                                <div class="carousel-box">
+                                <div class="carousel-box" style="border:1px solid red;width:100%;">
                                     <a href="{{ json_decode(get_setting('home_slider_links'), true)[$key] }}">
                                         <!-- Image -->
-                                        <img class="d-block mw-100 img-fit overflow-hidden h-sm-auto h-md-320px h-lg-460px overflow-hidden"
+                                        <img class="d-block mw-100 img-fit overflow-hidden h-sm-auto h-md-320px h-lg-240px overflow-hidden"
                                             src="{{ uploaded_asset($slider_images[$key]) }}"
                                             alt="{{ env('APP_NAME')}} promo"
                                             onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder-rect.jpg') }}';">
