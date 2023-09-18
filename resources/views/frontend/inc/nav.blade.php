@@ -18,7 +18,7 @@
     @endif
 
     <!-- Top Bar -->
-    <div class="top-navbar bg-white z-1035 h-35px h-sm-auto">
+    <div class="top-navbar bg-white z-1035 h-35px h-sm-auto" style="display:none;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col">
