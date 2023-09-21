@@ -1,7 +1,11 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-
+    <style type="text/css">
+        table, th, td {
+            border: 1px solid #87c232;
+        }
+    </style>
     <!-- Steps -->
     <section class="pt-5 mb-4">
         <div class="container">
@@ -59,15 +63,14 @@
                         
                         <div class="card rounded-0 border shadow-none">
                             <!-- Additional Info -->
-                            <div class="card-header p-4 border-bottom-0">
+                            <!--<div class="card-header p-4 border-bottom-0">
                                 <h3 class="fs-16 fw-700 text-dark mb-0">
                                     {{ translate('Any additional info?') }}
                                 </h3>
                             </div>
                             <div class="form-group px-4">
                                 <textarea name="additional_info" rows="5" class="form-control rounded-0" placeholder="{{ translate('Type your text...') }}"></textarea>
-                            </div>
-
+                            </div>-->
                             <div class="card-header p-4 border-bottom-0">
                                 <h3 class="fs-16 fw-700 text-dark mb-0">
                                     {{ translate('Select a payment option') }}
@@ -76,6 +79,46 @@
                             <!-- Payment Options -->
                             <div class="card-body text-center px-4 pt-0">
                                 <div class="row gutters-10">
+                                    <!-- Bank Details -->
+                                      @if (get_setting('bankdetails') == 1)
+                                        <div class="col-6 col-xl-3 col-md-4">
+                                            <label class="aiz-megabox d-block mb-3">
+                                                <input value="bankdetails" class="online_payment" type="radio" name="payment_option" checked>
+                                                <span class="d-block aiz-megabox-elem rounded-0 p-3">
+                                                    <span class="d-block text-center">
+                                                        <span
+                                                            class="d-block fw-600 fs-15">
+                                                            {{ translate('Bank Details') }}
+                                                        </span>
+                                                    </span>
+                                                </span>
+                                            </label>
+                                            <div>
+                                                <table style="width:200%;">
+                                                    <tr>
+                                                        <th>Account Bank</th>
+                                                        <td>{{ env('ACCOUNT_BANK') }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Account Type</th>
+                                                        <td>{{ env('ACCOUNT_TYPE') }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Account Holder Name</th>
+                                                        <td>{{ env('ACCOUNT_HOLDER_NAME') }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Account Number</th>
+                                                        <td>{{ env('ACCOUNT_NUMBER') }}</td>
+                                                    </tr> 
+                                                    <tr>
+                                                        <th>IFSC Code</th>
+                                                        <td>{{ env('IFSC_CODE') }}</td>
+                                                    </tr>    
+                                                </table>   
+                                            </div>    
+                                        </div>
+                                    @endif
                                     <!-- Gpay -->
                                       @if (get_setting('gpay') == 1)
                                         <div class="col-6 col-xl-3 col-md-4">
@@ -83,12 +126,12 @@
                                                 <input value="gpay" class="online_payment" type="radio"
                                                     name="payment_option" checked>
                                                 <span class="d-block aiz-megabox-elem rounded-0 p-3">
-                                                    <img src="{{ static_asset('assets/img/cards/gpay.png') }}"
+                                                    <img src="{{ static_asset('assets/img/cards/') }}/{{ env('GPAY_QR_CODE') }}"
                                                         class="img-fit mb-2">
-                                                    <span class="d-block text-center">
+                                                    <!-- <span class="d-block text-center">
                                                         <span
                                                             class="d-block fw-600 fs-15">{{ translate('Gpay') }}</span>
-                                                    </span>
+                                                    </span> -->
                                                 </span>
                                             </label>
                                         </div>

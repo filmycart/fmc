@@ -52,7 +52,6 @@ class CheckoutController extends Controller
             $request->session()->put('payment_data', $data);
 
             if ($request->session()->get('combined_order_id') != null) {
-
                 // If block for Online payment, wallet and cash on delivery. Else block for Offline payment
                 $decorator = __NAMESPACE__ . '\\Payment\\' . str_replace(' ', '', ucwords(str_replace('_', ' ', $request->payment_option))) . "Controller";
                 if (class_exists($decorator)) {
@@ -89,6 +88,23 @@ class CheckoutController extends Controller
         foreach ($combined_order->orders as $key => $order) {
             $order = Order::findOrFail($order->id);
             $order->payment_status = 'paid';
+            $order->payment_details = $payment;
+            $order->save();
+
+            calculateCommissionAffilationClubPoint($order);
+        }
+        Session::put('combined_order_id', $combined_order_id);
+        return redirect()->route('order_confirmed');
+    }
+
+    //redirects to this method after a successfull checkout
+    public function checkout_done_new($combined_order_id, $payment)
+    {
+        $combined_order = CombinedOrder::findOrFail($combined_order_id);
+
+        foreach ($combined_order->orders as $key => $order) {
+            $order = Order::findOrFail($order->id);
+            $order->payment_status = 'unpaid';
             $order->payment_details = $payment;
             $order->save();
 

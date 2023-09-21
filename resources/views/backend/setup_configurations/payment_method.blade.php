@@ -929,7 +929,7 @@
                     <div class="card-body">
                         <form class="form-horizontal" action="{{ route('payment_method.update') }}" method="POST" enctype="multipart-formdata">
                             @csrf
-                            <input type="hidden" name="payment_method" value="gpay">
+                            <input type="hidden" name="payment_method" value="GPAY_UPI_ID">
                             <div class="form-group row">
                                 <input type="hidden" name="types[]" value="GPAY_UPI_ID">
                                 <div class="col-lg-4">
@@ -942,7 +942,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <input type="hidden" name="types[]" value="gpay">
+                                <input type="hidden" name="types[]" value="GPAY_QR_CODE">
                                 <div class="col-lg-4">
                                     <label class="col-from-label">{{ translate('GPAY_QR_CODE') }}</label>
                                 </div>
@@ -950,6 +950,80 @@
                                     <input type="file" class="form-control" name="GPAY_QR_CODE"
                                         value="{{ env('GPAY_QR_CODE') }}"
                                         placeholder="{{ translate('GPAY_QR_CODE') }}" required>
+                                </div>
+                            </div>
+                            <div class="form-group mb-0 text-right">
+                                <button type="submit" class="btn btn-sm btn-primary">{{ translate('Save') }}</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0 h6">{{ translate('Bank Details') }}</h5>
+                    </div>
+                    <div class="card-body">
+                        <form class="form-horizontal" action="{{ route('payment_method.update') }}" method="POST" enctype="multipart-formdata">
+                            @csrf
+                            <input type="hidden" name="payment_method" value="ACCOUNT_BANK">
+                            <div class="form-group row">
+                                <input type="hidden" name="types[]" value="ACCOUNT_BANK">
+                                <div class="col-lg-4">
+                                    <label class="col-from-label">{{ translate('Account Bank') }}</label>
+                                </div>
+                                <div class="col-lg-8">
+                                    <select type="text" class="form-control" name="ACCOUNT_BANK" required>
+                                        <option value="Punjab National Bank">Punjab National Bank</option>
+                                        <option value="State Bank Of India">State Bank Of India</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <input type="hidden" name="types[]" value="ACCOUNT_TYPE">
+                                <div class="col-lg-4">
+                                    <label class="col-from-label">{{ translate('Account Type') }}</label>
+                                </div>
+                                <div class="col-lg-8">
+                                    <select type="text" class="form-control" name="ACCOUNT_TYPE" required>
+                                        <option value="Savings">Savings</option>
+                                        <option value="Current">Current</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <input type="hidden" name="types[]" value="ACCOUNT_HOLDER_NAME">
+                                <div class="col-lg-4">
+                                    <label class="col-from-label">{{ translate('Account Holder Name') }}</label>
+                                </div>
+                                <div class="col-lg-8">
+                                    <input type="text" class="form-control" name="ACCOUNT_HOLDER_NAME"
+                                        value="{{ env('ACCOUNT_HOLDER_NAME') }}"
+                                        placeholder="{{ translate('Account Holder Name') }}" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <input type="hidden" name="types[]" value="ACCOUNT_NUMBER">
+                                <div class="col-lg-4">
+                                    <label class="col-from-label">{{ translate('Account Number') }}</label>
+                                </div>
+                                <div class="col-lg-8">
+                                    <input type="text" class="form-control" name="ACCOUNT_NUMBER"
+                                        value="{{ env('ACCOUNT_NUMBER') }}"
+                                        placeholder="{{ translate('Account Number') }}" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <input type="hidden" name="types[]" value="IFSC_CODE">
+                                <div class="col-lg-4">
+                                    <label class="col-from-label">{{ translate('IFSC Code') }}</label>
+                                </div>
+                                <div class="col-lg-8">
+                                    <input type="text" class="form-control" name="IFSC_CODE"
+                                        value="{{ env('IFSC_CODE') }}"
+                                        placeholder="{{ translate('IFSC Code') }}" required>
                                 </div>
                             </div>
                             <div class="form-group mb-0 text-right">
