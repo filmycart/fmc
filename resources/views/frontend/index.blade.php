@@ -18,7 +18,7 @@
                                 <div class="carousel-box">
                                     <a href="{{ json_decode(get_setting('home_slider_links'), true)[$key] }}">
                                         <!-- Image -->
-                                        <img class="d-block mw-100 img-fit overflow-hidden h-sm-auto h-md-320px h-lg-220px overflow-hidden"
+                                        <img class="d-block mw-100 img-fit overflow-hidden h-sm-auto h-md-320px h-lg-240px overflow-hidden"
                                             src="{{ uploaded_asset($slider_images[$key]) }}"
                                             alt="{{ env('APP_NAME')}} promo"
                                             onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder-rect.jpg') }}';">
@@ -188,10 +188,10 @@
                         @foreach ($featured_categories as $key => $category)
                             <div class="carousel-box position-relative text-center has-transition hov-scale-img hov-animate-outline border-right border-top border-bottom @if($key == 0) border-left @endif">
                                 <a href="{{ route('products.category', $category->slug) }}" class="d-block">
-                                    <img src="{{ uploaded_asset($category->banner) }}" class="lazyload h-130px mx-auto has-transition p-2 p-sm-4 mw-100"
+                                    <img src="{{ uploaded_asset($category->banner) }}" class="lazyload h-130px mx-auto has-transition p-2 mw-100"
                                         alt="{{ $category->getTranslation('name') }}" onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';">
                                 </a>
-                                <h6 class="text-dark mb-3 h-40px text-truncate-2">
+                                <h6 class="text-dark mb-3 h-15px text-truncate-2">
                                     <a class="text-reset fw-700 fs-14 hov-text-primary" href="{{ route('products.category', $category->slug) }}" title="{{  $category->getTranslation('name')  }}">{{ $category->getTranslation('name') }}</a>
                                 </h6>
                             </div>
