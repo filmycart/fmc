@@ -10080,14 +10080,19 @@ ul.apps a:hover i{
 
 /*hover category menu*/
 .aiz-category-menu .sub-cat-menu {
+    /*border:1px solid red !important;*/
+    box-shadow: 0px 1px 1px 0px #87c232 !important;
     /* display: none; */
     position: absolute;
-    width: calc(100% - 270px);
-    left: calc(270px);
+    /*width: calc(100% - 270px);*/
+    width: calc(100% - 1000px);
+    border-radius:7px;
+    /*left: calc(270px);*/
+    left: calc(70px);
     /* height: calc(100% + 20px); */
     height: 460px;
     overflow: hidden;
-    top: 0;
+    top: 121;
     z-index: -1;
     background-color: #fff;
     overflow-y: auto;
@@ -10107,8 +10112,8 @@ ul.apps a:hover i{
     padding-bottom: 14px;
 }
 .aiz-category-menu .category-nav-element > a {
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 .aiz-user-top-menu .user-top-nav-element:hover > a ,
 .aiz-category-menu .category-nav-element:hover > a {

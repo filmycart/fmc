@@ -5,14 +5,13 @@
     <div class="home-banner-area mb-3">
         <div class="container">
             <div class="d-flex flex-wrap position-relative">
-                <!-- <div class="position-static d-none d-xl-block">
+                <div class="position-static d-none d-xl-block">
                     @include('frontend.partials.category_menu')
-                </div> -->
-
+                </div>
                 <!-- Sliders -->
                 <div class="home-slider">
                     @if (get_setting('home_slider_images') != null)
-                        <div class="aiz-carousel dots-inside-bottom mobile-img-auto-height" data-autoplay="true">
+                        <div class="aiz-carousel dots-inside-bottom mobile-img-auto-height" data-autoplay="true"data-arrows="true" data-dots="true">
                             @php $slider_images = json_decode(get_setting('home_slider_images'), true);  @endphp
                             @foreach ($slider_images as $key => $value)
                                 <div class="carousel-box">
