@@ -44,6 +44,12 @@
 												<input type="text" class="form-control" placeholder="http://" name="home_slider_links[]" value="{{ json_decode(get_setting('home_slider_links'), true)[$key] }}">
 											</div>
 										</div>
+										<div class="col-md">
+											<div class="form-group">
+												<input type="hidden" name="types[]" value="home_slider_texts">
+												<input type="text" class="form-control" placeholder="Title" name="home_slider_texts[]" value="{{ json_decode(get_setting('home_slider_links'), true)[$key] }}">
+											</div>
+										</div>
 										<div class="col-md-auto">
 											<div class="form-group">
 												<button type="button" class="mt-1 btn btn-icon btn-circle btn-sm btn-soft-danger" data-toggle="remove-parent" data-parent=".row">

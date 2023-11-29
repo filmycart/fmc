@@ -1,13 +1,109 @@
 @extends('frontend.layouts.app')
 
 @section('content')
+    <style>
+      /* Container holding the image and the text */
+      .container {
+        position: relative;
+      }
+
+      /* Bottom right text */
+      .text-block {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        /*background-color: black;*/
+        color: white;
+        padding-left: 20px;
+        padding-right: 20px;
+        border:1px solid red;
+      }
+
+      .cross {
+        position: relative;
+        display: inline-block;
+      }
+
+      .cross::before, .cross::after {
+        content: '';
+        width: 100%;
+        position: absolute;
+        right: 0;
+        top: 50%;
+      }
+
+      .cross::before {
+        border-bottom: 2px solid red;
+        -webkit-transform: skewY(-10deg);
+        transform: skewY(-10deg);
+      }
+
+      .cross::after {
+        border-bottom: 2px solid red;
+        -webkit-transform: skewY(10deg);
+        transform: skewY(10deg);
+      }
+
+      /* Container holding the image and the text */
+      .slider-container {
+        position: relative;
+        text-align: center;
+        color: white;
+      }
+
+      /* Bottom left text */
+      .bottom-left {
+        position: absolute;
+        bottom: 8px;
+        left: 16px;
+      }
+
+      /* Top left text */
+      .top-left {
+        position: absolute;
+        top: 8px;
+        left: 16px;
+      }
+
+      /* Top right text */
+      .top-right {
+        position: absolute;
+        top: 8px;
+        right: 16px;
+      }
+
+      /* Bottom right text */
+      .bottom-right {
+        position: absolute;
+        bottom: 8px;
+        right: 16px;
+      }
+
+      /* Centered text */
+      .centered {
+        /*font-family: "Romantiques", Times, serif;*/
+        font-family: "Source Sans Pro", "Arial", sans-serif;
+
+        position: absolute;
+        top: 15%;
+        left: 35%;
+        transform: translate(-50%, -50%);
+      }
+    </style>  
     <!-- Sliders & Today's deal -->
     <div class="home-banner-area mb-3">
         <div class="container">
-            <div class="d-flex flex-wrap position-relative">
+          <div class="d-flex flex-wrap position-relative">
+              <div class="position-static d-none d-xl-block">
+                  @include('frontend.partials.category_menu')
+              </div>
+          </div>      
+        </div>
+        <div class="container">
+            <!-- <div class="d-flex flex-wrap position-relative">
                 <div class="position-static d-none d-xl-block">
                     @include('frontend.partials.category_menu')
-                </div>
+                </div> -->
                 <!-- Sliders -->
                 <div class="home-slider">
                     @if (get_setting('home_slider_images') != null)
@@ -15,13 +111,36 @@
                             @php $slider_images = json_decode(get_setting('home_slider_images'), true);  @endphp
                             @foreach ($slider_images as $key => $value)
                                 <div class="carousel-box">
-                                    <a href="{{ json_decode(get_setting('home_slider_links'), true)[$key] }}">
-                                        <!-- Image -->
+                                    <!-- <a href="{{ json_decode(get_setting('home_slider_links'), true)[$key] }}">
                                         <img class="d-block mw-100 img-fit overflow-hidden h-sm-auto h-md-320px h-lg-220px overflow-hidden"
                                             src="{{ uploaded_asset($slider_images[$key]) }}"
                                             alt="{{ env('APP_NAME')}} promo"
                                             onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder-rect.jpg') }}';">
-                                    </a>
+                                    </a> -->
+                                    <!-- <div class="container">
+                                      <img class="d-block mw-100 img-fit overflow-hidden h-sm-auto h-md-320px h-lg-220px overflow-hidden"
+                                            src="{{ uploaded_asset($slider_images[$key]) }}"
+                                            alt="{{ env('APP_NAME')}} promo"
+                                            onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder-rect.jpg') }}';" style="width:100%;">
+                                      <div class="text-block">
+                                        <p>100</p>
+                                        <p class="cross">110</p>
+                                        <h4>Nature</h4>
+                                        <p>What a beautiful sunrise</p>
+                                      </div>
+                                    </div> -->
+
+                                    <div class="slider-container">
+                                      <img class="d-block mw-100 img-fit overflow-hidden h-sm-auto h-md-320px h-lg-220px overflow-hidden"
+                                            src="{{ uploaded_asset($slider_images[$key]) }}"
+                                            alt="{{ env('APP_NAME')}} promo"
+                                            onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder-rect.jpg') }}';" style="width:100%;">
+                                      <!-- <div class="bottom-left">Bottom Left</div>
+                                      <div class="top-left">Top Left</div>
+                                      <div class="top-right">Top Right</div>
+                                      <div class="bottom-right">Bottom Right</div> -->
+                                      <div class="centered">Centered</div>
+                                    </div>
                                 </div>
                             @endforeach
                         </div>

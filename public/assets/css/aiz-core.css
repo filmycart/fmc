@@ -918,7 +918,8 @@ hr {
 
 .text-primary,
 .hov-text-primary:hover {
-    color: var(--primary) !important;
+    /*color: var(--primary) !important;*/
+     /*background-color: var(--primary) !important;*/
 }
 .text-soft-primary,
 .hov-text-soft-primary:hover {
@@ -9322,14 +9323,14 @@ div.footable-loader > span.fooicon:after {
     box-shadow: 0 2px 10px rgba(20, 23, 28, 0.13) !important;
 }
 .aiz-carousel .slick-prev {
-    left: 10px;
+    left: 15px;
 }
 .aiz-carousel.hide-disabled .slick-disabled {
     display: none !important;
 }
 
 .aiz-carousel .slick-next {
-    right: 10px;
+    right: 15px;
 }
 .aiz-carousel.arrow-dark .slick-arrow {
     width: 25px;
@@ -9387,8 +9388,10 @@ div.footable-loader > span.fooicon:after {
     margin: 0 3px;
 }
 .aiz-carousel .slick-dots .slick-active button {
-    background: var(--primary);
+    /*background: var(--primary);*/
+    background: #ffffff;
 }
+
 .aiz-carousel.dots-inside-bottom .slick-dots {
     position: absolute;
     bottom: 10px;
@@ -11256,7 +11259,7 @@ ul.apps a:hover i{
 }
 @media (min-width: 992px){
     .card-columns {
-        column-count: 3 !important;
+        /*column-count: 3 !important;*/
     }
     .arrow-lg-none .slick-arrow {
         display: none !important;
