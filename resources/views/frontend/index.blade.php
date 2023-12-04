@@ -194,11 +194,17 @@
                                         <div class="price-weight">
                                             <img src="" alt="">
                                         </div>
-                                        <div class="regular-price">
-                                            <p>Rs. {{ json_decode(get_setting('home_slider_price'), true)[$key] ?? "Price"}}/-</p>
-                                        </div>
+                                        @if (json_decode(get_setting('home_slider_sale_price'), true)[$key])
+                                            <div class="regular-price">
+                                                <p>Rs. {{ json_decode(get_setting('home_slider_price'), true)[$key] ?? ""}}/-</p>
+                                            </div>
+                                        @endif
                                         <div class="discounted-price">
-                                            <p>Rs. {{ json_decode(get_setting('home_slider_sale_price'), true)[$key] ?? 'Sale price'}}/-</p>
+                                            @if (json_decode(get_setting('home_slider_sale_price'), true)[$key])
+                                                <p>Rs. {{ json_decode(get_setting('home_slider_sale_price'), true)[$key] ?? ""}}/-</p>
+                                            @else
+                                                <p>Rs. {{ json_decode(get_setting('home_slider_price'), true)[$key] ?? ""}}/-</p>
+                                            @endif
                                         </div>
                                         <div class="grams">
                                             <p>{{ json_decode(get_setting('home_slider_gram'), true)[$key] ?? "grams"}}</p>
