@@ -190,18 +190,18 @@
                                       <div class="top-right">Top Right</div>
                                       <div class="bottom-right">Bottom Right</div> -->
                                       <div class="centered">
-                                        <h2>Kashmiri White Honey</h2>
+                                        <h2>{{ json_decode(get_setting('home_slider_texts'), true)[$key] }}</h2>
                                         <div class="price-weight">
                                             <img src="" alt="">
                                         </div>
                                         <div class="regular-price">
-                                            <p>Rs. 350/-</p>
+                                            <p>Rs. {{ json_decode(get_setting('home_slider_price'), true)[$key] ?? "Price"}}/-</p>
                                         </div>
                                         <div class="discounted-price">
-                                            <p>Rs. 300/-</p>
+                                            <p>Rs. {{ json_decode(get_setting('home_slider_sale_price'), true)[$key] ?? 'Sale price'}}/-</p>
                                         </div>
                                         <div class="grams">
-                                            <p>250g</p>
+                                            <p>{{ json_decode(get_setting('home_slider_gram'), true)[$key] ?? "grams"}}</p>
                                         </div>
                                       </div>
                                     </div>
