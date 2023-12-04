@@ -1,1 +1,97 @@
 /*your custom css goes here*/ 
+
+.container{
+    margin: 0 auto;
+}
+.h-lg-220px, .size-lg-220px {
+    height: 300px !important;
+}
+.home-slider {
+    margin-top: 30px;
+}
+div#category-sidebar {
+    height: 100%;
+    width: 100%;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    margin-top: 10px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+.cat-name.has-transition {
+    margin-top: 10px;
+    text-align: center;
+    font-weight: 600;
+}
+li.category-nav-element:hover a {
+    background-color: transparent !important;
+}
+li.category-nav-element:hover .cat-name.has-transition {
+    color: #87C232;
+    margin-left: 0px !important;
+}
+li.category-nav-element:hover ul.dd-sub-menu {
+    display: block;
+}
+.sub-menu{
+    position: relative;
+}
+ul.dd-sub-menu {
+    min-width: 240px;
+    position: absolute;
+    box-shadow: 0 8px 8px 1px rgba(0,0,0,.3);
+    border-radius: 8px;
+    background-color: #fff;
+    z-index: 100;
+    /* overflow: hidden; */
+    height: auto;
+    padding: 20px 10px;
+    list-style: none;
+    display: none;
+    /* top: 10px; */
+}
+.dd-sub-menu li a {
+    color: #000;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 22px;
+}
+.dd-sub-menu li {
+    padding: 8px 16px;
+    margin-top: 3px;
+    position: relative;
+}
+ul.cus-sub-menu {
+    min-width: 240px;
+    position: absolute;
+    box-shadow: 0 8px 8px 1px rgba(0,0,0,.3);
+    border-radius: 8px;
+    background-color: #fff;
+    z-index: 100;
+    overflow: hidden;
+    height: auto;
+    padding: 20px 10px;
+    list-style: none;
+    top: -24px;
+    left: 100%;
+    display: none;
+}
+.dd-sub-menu li:hover> ul.cus-sub-menu {
+    display: block;
+}
+.dd-sub-menu li:hover:before {
+    content: "";
+    position: absolute;
+    height: 6px;
+    width: 6px;
+    border-color: #111112;
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+    transform-origin: 50% 50%;
+    transform: translateY(75%) rotate(-45deg);
+    display: block;
+    top: 12px;
+    right: 16px;
+}
+.dd-sub-menu li:hover {
+    background-color: #f0f5ff;
+}
