@@ -85,8 +85,8 @@
         font-family: "Source Sans Pro", "Arial", sans-serif;
 
         position: absolute;
-        top: 50%;
-        left: 49%;
+        top: 41%;
+        left: 36%;
         transform: translate(-50%, -50%);
       }
       .centered h2 {
@@ -199,6 +199,9 @@
                                         </div>
                                         <div class="discounted-price">
                                             <p>Rs. 300/-</p>
+                                        </div>
+                                        <div class="grams">
+                                            <p>250g</p>
                                         </div>
                                       </div>
                                     </div>

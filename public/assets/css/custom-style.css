@@ -95,3 +95,22 @@ ul.cus-sub-menu {
 .dd-sub-menu li:hover {
     background-color: #f0f5ff;
 }
+.grams p {
+    color: #000;
+    font-size: 45px;
+    font-weight: 900;
+}
+.grams {
+    position: absolute;
+    left: -27%;
+    bottom: -40%;
+}
+@media(max-width:768px){
+    .grams {
+        bottom: -23% !important;
+        left: 25%;
+    }
+    .centered{
+        left: 50% !important;
+    }
+}
