@@ -159,6 +159,7 @@
                     @if (get_setting('home_slider_images') != null)
                         <div class="aiz-carousel dots-inside-bottom mobile-img-auto-height" data-autoplay="true"data-arrows="true" data-dots="true">
                             @php $slider_images = json_decode(get_setting('home_slider_images'), true);  @endphp
+                            @php $slider_price = json_decode(get_setting('home_slider_price'), true);  @endphp
                             @foreach ($slider_images as $key => $value)
                                 <div class="carousel-box">
                                     <!-- <a href="{{ json_decode(get_setting('home_slider_links'), true)[$key] }}">
@@ -181,6 +182,7 @@
                                     </div> -->
 
                                     <div class="slider-container">
+                                       
                                       <img class="d-block mw-100 img-fit overflow-hidden h-sm-auto h-md-320px h-lg-220px overflow-hidden"
                                             src="{{ uploaded_asset($slider_images[$key]) }}"
                                             alt="{{ env('APP_NAME')}} promo"
