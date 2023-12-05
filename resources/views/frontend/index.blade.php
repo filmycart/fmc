@@ -85,21 +85,71 @@
         font-family: "Source Sans Pro", "Arial", sans-serif;
 
         position: absolute;
-        top: 15%;
-        left: 35%;
+        top: 41%;
+        left: 36%;
         transform: translate(-50%, -50%);
       }
+      .centered h2 {
+    font-family: "Source Sans Pro", "Arial", sans-serif;
+    font-size: 40px;
+    line-height: 46px;
+    color: #5B3B00;
+    font-weight: 700;
+}
+.regular-price p {
+    color: #E45200;
+    font-size: 25px;
+    font-weight: 900;
+    font-style: italic;
+    font-family: "Source Sans Pro", "Arial", sans-serif;
+    margin-bottom: 0px;
+    position: relative;
+    display: inline-block;
+}
+.discounted-price p {
+    color: #E45200;
+    font-size: 35px;
+    font-weight: 900;
+    font-style: italic;
+    font-family: "Source Sans Pro", "Arial", sans-serif;
+}
+.regular-price p:after, .regular-price p:before {
+    content: '';
+    width: 100%;
+    position: absolute;
+    right: 0;
+    top: 50%;
+}
+
+.regular-price p:before {
+    border-bottom: 3px solid #080808c7;
+    -webkit-transform: skewY(-10deg);
+    transform: skewY(-10deg);
+}
+
+.regular-price p:after {
+    border-bottom: 3px solid #080808c7;
+    -webkit-transform: skewY(10deg);
+    transform: skewY(10deg);
+}
+.aiz-main-wrapper{
+    min-height: auto;
+}
+.h-sec-carousel .slick-slide img {
+    height: 160px;
+    object-fit: cover;
+}
     </style>  
     <!-- Sliders & Today's deal -->
     <div class="home-banner-area mb-3">
         <div class="container">
-          <div class="d-flex flex-wrap position-relative">
-              <div class="position-static d-none d-xl-block">
+          <div class="d-flex flex-wrap position-relative main-menu">
+              <div class="position-static d-none d-xl-block" style="width:100%;">
                   @include('frontend.partials.category_menu')
               </div>
           </div>      
         </div>
-        <div class="container">
+        <div class="container-fluid">
             <!-- <div class="d-flex flex-wrap position-relative">
                 <div class="position-static d-none d-xl-block">
                     @include('frontend.partials.category_menu')
@@ -109,6 +159,7 @@
                     @if (get_setting('home_slider_images') != null)
                         <div class="aiz-carousel dots-inside-bottom mobile-img-auto-height" data-autoplay="true"data-arrows="true" data-dots="true">
                             @php $slider_images = json_decode(get_setting('home_slider_images'), true);  @endphp
+                            @php $slider_price = json_decode(get_setting('home_slider_price'), true);  @endphp
                             @foreach ($slider_images as $key => $value)
                                 <div class="carousel-box">
                                     <!-- <a href="{{ json_decode(get_setting('home_slider_links'), true)[$key] }}">
@@ -131,6 +182,7 @@
                                     </div> -->
 
                                     <div class="slider-container">
+                                       
                                       <img class="d-block mw-100 img-fit overflow-hidden h-sm-auto h-md-320px h-lg-220px overflow-hidden"
                                             src="{{ uploaded_asset($slider_images[$key]) }}"
                                             alt="{{ env('APP_NAME')}} promo"
@@ -139,7 +191,27 @@
                                       <div class="top-left">Top Left</div>
                                       <div class="top-right">Top Right</div>
                                       <div class="bottom-right">Bottom Right</div> -->
-                                      <div class="centered">Centered</div>
+                                      <div class="centered">
+                                        <h2>{{ json_decode(get_setting('home_slider_texts'), true)[$key] }}</h2>
+                                        <div class="price-weight">
+                                            <img src="" alt="">
+                                        </div>
+                                        @if (json_decode(get_setting('home_slider_sale_price'), true)[$key])
+                                            <div class="regular-price">
+                                                <p>Rs. {{ json_decode(get_setting('home_slider_price'), true)[$key] ?? ""}}/-</p>
+                                            </div>
+                                        @endif
+                                        <div class="discounted-price">
+                                            @if (json_decode(get_setting('home_slider_sale_price'), true)[$key])
+                                                <p>Rs. {{ json_decode(get_setting('home_slider_sale_price'), true)[$key] ?? ""}}/-</p>
+                                            @else
+                                                <p>Rs. {{ json_decode(get_setting('home_slider_price'), true)[$key] ?? ""}}/-</p>
+                                            @endif
+                                        </div>
+                                        <div class="grams">
+                                            <p>{{ json_decode(get_setting('home_slider_gram'), true)[$key] ?? "grams"}}</p>
+                                        </div>
+                                      </div>
                                     </div>
                                 </div>
                             @endforeach
@@ -268,7 +340,7 @@
                 $data_md = count($banner_1_imags) >= 2 ? 2 : 1;
             @endphp
             <div class="w-100">
-                <div class="aiz-carousel gutters-16 overflow-hidden arrow-inactive-none arrow-dark arrow-x-15" data-items="{{ count($banner_1_imags) }}" data-xxl-items="{{ count($banner_1_imags) }}" data-xl-items="{{ count($banner_1_imags) }}" data-lg-items="{{ $data_md }}" data-md-items="{{ $data_md }}" data-sm-items="1" data-xs-items="1" data-arrows="true" data-dots="false">
+                <div class="h-sec-carousel aiz-carousel gutters-16 overflow-hidden arrow-inactive-none arrow-dark arrow-x-15" data-items="{{ count($banner_1_imags) }}" data-xxl-items="{{ count($banner_1_imags) }}" data-xl-items="{{ count($banner_1_imags) }}" data-lg-items="{{ $data_md }}" data-md-items="{{ $data_md }}" data-sm-items="1" data-xs-items="1" data-arrows="true" data-dots="false">
                     @foreach ($banner_1_imags as $key => $value)
                         <div class="carousel-box overflow-hidden hov-scale-img">
                             <a href="{{ json_decode(get_setting('home_banner1_links'), true)[$key] }}" class="d-block text-reset overflow-hidden">
@@ -285,7 +357,7 @@
 
     <!-- Featured Categories -->
     @if (count($featured_categories) > 0)
-        <section class="mb-2 mb-md-3 mt-2 mt-md-3">
+        <section class="mb-2 mb-md-3 mt-2 mt-md-3 featured-categories">
             <div class="container">
                 <div class="bg-white">
                     <!-- Top Section -->
