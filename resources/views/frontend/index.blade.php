@@ -141,7 +141,7 @@
 }
     </style>  
     <!-- Sliders & Today's deal -->
-    <div class="home-banner-area mb-3">
+    <div class="home-banner-area">
         <div class="container">
           <div class="d-flex flex-wrap position-relative main-menu">
               <div class="position-static d-none d-xl-block" style="width:100%;">
@@ -149,7 +149,7 @@
               </div>
           </div>      
         </div>
-        <div class="container-fluid">
+        <div class="container">
             <!-- <div class="d-flex flex-wrap position-relative">
                 <div class="position-static d-none d-xl-block">
                     @include('frontend.partials.category_menu')
@@ -227,7 +227,7 @@
         $flash_deal = get_featured_flash_deal();
     @endphp
     @if($flash_deal != null)
-    <section class="mb-2 mb-md-3 mt-2 mt-md-3">
+    <section class="mt-2 mt-md-3">
         <div class="container">
             <!-- Top Section -->
             <div class="d-flex flex-wrap mb-2 mb-md-3 align-items-baseline justify-content-between">
@@ -333,7 +333,7 @@
 
     <!-- Banner section 1 -->
     @if (get_setting('home_banner1_images') != null)
-    <div class="mb-2 mb-md-3 mt-2 mt-md-3">
+    <div class="mt-2 mt-md-3">
         <div class="container">
             @php 
                 $banner_1_imags = json_decode(get_setting('home_banner1_images')); 
@@ -357,7 +357,7 @@
 
     <!-- Featured Categories -->
     @if (count($featured_categories) > 0)
-        <section class="mb-2 mb-md-3 mt-2 mt-md-3 featured-categories">
+        <section class="mt-2 mt-md-3 featured-categories">
             <div class="container">
                 <div class="bg-white">
                     <!-- Top Section -->
@@ -394,7 +394,7 @@
 
     <!-- Banner Section 2 -->
     @if (get_setting('home_banner2_images') != null)
-    <div class="mb-2 mb-md-3 mt-2 mt-md-3">
+    <div class="mt-2 mt-md-3">
         <div class="container">
             @php
                 $banner_2_imags = json_decode(get_setting('home_banner2_images'));

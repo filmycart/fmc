@@ -4,15 +4,15 @@
     margin: 0 auto;
 }
 .h-lg-220px, .size-lg-220px {
-    height: 300px !important;
+    height: 220px !important;
 }
 .home-slider {
-    margin-top: 30px;
+    margin-top: 25px;
 }
 div#category-sidebar {
     height: 100%;
     width: 100%;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 0rem 1rem rgba(0, 0, 0, 0.15);
     margin-top: 10px;
     padding-top: 16px;
     padding-bottom: 16px;
@@ -113,4 +113,7 @@ ul.cus-sub-menu {
     .centered{
         left: 50% !important;
     }
+}
+.mt-md-3, .my-md-3{
+    margin-top: 8px !important;
 }
