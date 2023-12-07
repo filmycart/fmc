@@ -149,7 +149,7 @@
               </div>
           </div>      
         </div>
-        <div class="container-lg">
+        <div class="container">
             <!-- <div class="d-flex flex-wrap position-relative">
                 <div class="position-static d-none d-xl-block">
                     @include('frontend.partials.category_menu')
