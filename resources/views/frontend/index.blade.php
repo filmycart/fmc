@@ -192,26 +192,26 @@
                                       <div class="top-right">Top Right</div>
                                       <div class="bottom-right">Bottom Right</div> -->
                                       <div class="centered">
-                                        <h2>{{ json_decode(get_setting('home_slider_texts'), true)[$key] }}</h2>
-                                        <div class="price-weight">
-                                            <img src="" alt="">
-                                        </div>
-                                        @if (json_decode(get_setting('home_slider_sale_price'), true)[$key])
-                                            <div class="regular-price">
-                                                <p>Rs. {{ json_decode(get_setting('home_slider_price'), true)[$key] ?? ""}}/-</p>
+                                            <h2>{{ json_decode(get_setting('home_slider_texts'), true)[$key] }}</h2>
+                                            <div class="price-weight">
+                                                <img src="" alt="">
                                             </div>
-                                        @endif
-                                        <div class="discounted-price">
                                             @if (json_decode(get_setting('home_slider_sale_price'), true)[$key])
-                                                <p>Rs. {{ json_decode(get_setting('home_slider_sale_price'), true)[$key] ?? ""}}/-</p>
-                                            @else
-                                                <p>Rs. {{ json_decode(get_setting('home_slider_price'), true)[$key] ?? ""}}/-</p>
+                                                <div class="regular-price">
+                                                    <p>Rs. {{ json_decode(get_setting('home_slider_price'), true)[$key] ?? ""}}/-</p>
+                                                </div>
                                             @endif
+                                            <div class="discounted-price">
+                                                @if (json_decode(get_setting('home_slider_sale_price'), true)[$key])
+                                                    <p>Rs. {{ json_decode(get_setting('home_slider_sale_price'), true)[$key] ?? ""}}/-</p>
+                                                @else
+                                                    <p>Rs. {{ json_decode(get_setting('home_slider_price'), true)[$key] ?? ""}}/-</p>
+                                                @endif
+                                            </div>
+                                            <div class="grams">
+                                                <p>{{ json_decode(get_setting('home_slider_gram'), true)[$key] ?? "grams"}}</p>
+                                            </div>
                                         </div>
-                                        <div class="grams">
-                                            <p>{{ json_decode(get_setting('home_slider_gram'), true)[$key] ?? "grams"}}</p>
-                                        </div>
-                                      </div>
                                     </div>
                                 </div>
                             @endforeach
