@@ -78,7 +78,7 @@ ul.cus-sub-menu {
 .dd-sub-menu li:hover> ul.cus-sub-menu {
     display: block;
 }
-.dd-sub-menu li:hover:before {
+.dd-sub-menu li.has-sub-menu:hover:before {
     content: "";
     position: absolute;
     height: 6px;
@@ -92,7 +92,7 @@ ul.cus-sub-menu {
     top: 12px;
     right: 16px;
 }
-.dd-sub-menu li:hover {
+.dd-sub-menu li.has-sub-menu:hover {
     background-color: #f0f5ff;
 }
 .grams p {
