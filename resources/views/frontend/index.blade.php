@@ -1,28 +1,218 @@
 @extends('frontend.layouts.app')
 
 @section('content')
+    <style>
+      /* Container holding the image and the text */
+      .container {
+        position: relative;
+      }
+
+      /* Bottom right text */
+      .text-block {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        /*background-color: black;*/
+        color: white;
+        padding-left: 20px;
+        padding-right: 20px;
+        border:1px solid red;
+      }
+
+      .cross {
+        position: relative;
+        display: inline-block;
+      }
+
+      .cross::before, .cross::after {
+        content: '';
+        width: 100%;
+        position: absolute;
+        right: 0;
+        top: 50%;
+      }
+
+      .cross::before {
+        border-bottom: 2px solid red;
+        -webkit-transform: skewY(-10deg);
+        transform: skewY(-10deg);
+      }
+
+      .cross::after {
+        border-bottom: 2px solid red;
+        -webkit-transform: skewY(10deg);
+        transform: skewY(10deg);
+      }
+
+      /* Container holding the image and the text */
+      .slider-container {
+        position: relative;
+        text-align: center;
+        color: white;
+      }
+
+      /* Bottom left text */
+      .bottom-left {
+        position: absolute;
+        bottom: 8px;
+        left: 16px;
+      }
+
+      /* Top left text */
+      .top-left {
+        position: absolute;
+        top: 8px;
+        left: 16px;
+      }
+
+      /* Top right text */
+      .top-right {
+        position: absolute;
+        top: 8px;
+        right: 16px;
+      }
+
+      /* Bottom right text */
+      .bottom-right {
+        position: absolute;
+        bottom: 8px;
+        right: 16px;
+      }
+
+      /* Centered text */
+      .centered {
+        /*font-family: "Romantiques", Times, serif;*/
+        font-family: "Source Sans Pro", "Arial", sans-serif;
+
+        position: absolute;
+        top: 41%;
+        left: 36%;
+        transform: translate(-50%, -50%);
+      }
+      .centered h2 {
+    font-family: "Source Sans Pro", "Arial", sans-serif;
+    font-size: 40px;
+    line-height: 46px;
+    color: #5B3B00;
+    font-weight: 700;
+}
+.regular-price p {
+    color: #E45200;
+    font-size: 25px;
+    font-weight: 900;
+    font-style: italic;
+    font-family: "Source Sans Pro", "Arial", sans-serif;
+    margin-bottom: 0px;
+    position: relative;
+    display: inline-block;
+}
+.discounted-price p {
+    color: #E45200;
+    font-size: 35px;
+    font-weight: 900;
+    font-style: italic;
+    font-family: "Source Sans Pro", "Arial", sans-serif;
+}
+.regular-price p:after, .regular-price p:before {
+    content: '';
+    width: 100%;
+    position: absolute;
+    right: 0;
+    top: 50%;
+}
+
+.regular-price p:before {
+    border-bottom: 3px solid #080808c7;
+    -webkit-transform: skewY(-10deg);
+    transform: skewY(-10deg);
+}
+
+.regular-price p:after {
+    border-bottom: 3px solid #080808c7;
+    -webkit-transform: skewY(10deg);
+    transform: skewY(10deg);
+}
+.aiz-main-wrapper{
+    min-height: auto;
+}
+.h-sec-carousel .slick-slide img {
+    height: 160px;
+    object-fit: cover;
+}
+    </style>  
     <!-- Sliders & Today's deal -->
-    <div class="home-banner-area mb-3">
+    <div class="home-banner-area">
         <div class="container">
-            <div class="d-flex flex-wrap position-relative">
-                <!-- <div class="position-static d-none d-xl-block">
+          <div class="d-flex flex-wrap position-relative main-menu">
+              <div class="position-static d-none d-xl-block" style="width:100%;">
+                  @include('frontend.partials.category_menu')
+              </div>
+          </div>      
+        </div>
+        <div class="container">
+            <!-- <div class="d-flex flex-wrap position-relative">
+                <div class="position-static d-none d-xl-block">
                     @include('frontend.partials.category_menu')
                 </div> -->
-
                 <!-- Sliders -->
                 <div class="home-slider">
                     @if (get_setting('home_slider_images') != null)
-                        <div class="aiz-carousel dots-inside-bottom mobile-img-auto-height" data-autoplay="true">
+                        <div class="aiz-carousel dots-inside-bottom mobile-img-auto-height" data-autoplay="true"data-arrows="true" data-dots="true">
                             @php $slider_images = json_decode(get_setting('home_slider_images'), true);  @endphp
+                            @php $slider_price = json_decode(get_setting('home_slider_price'), true);  @endphp
                             @foreach ($slider_images as $key => $value)
                                 <div class="carousel-box">
-                                    <a href="{{ json_decode(get_setting('home_slider_links'), true)[$key] }}">
-                                        <!-- Image -->
-                                        <img class="d-block mw-100 img-fit overflow-hidden h-sm-auto h-md-320px h-lg-240px overflow-hidden"
+                                    <!-- <a href="{{ json_decode(get_setting('home_slider_links'), true)[$key] }}">
+                                        <img class="d-block mw-100 img-fit overflow-hidden h-sm-auto h-md-320px h-lg-220px overflow-hidden"
                                             src="{{ uploaded_asset($slider_images[$key]) }}"
                                             alt="{{ env('APP_NAME')}} promo"
                                             onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder-rect.jpg') }}';">
-                                    </a>
+                                    </a> -->
+                                    <!-- <div class="container">
+                                      <img class="d-block mw-100 img-fit overflow-hidden h-sm-auto h-md-320px h-lg-220px overflow-hidden"
+                                            src="{{ uploaded_asset($slider_images[$key]) }}"
+                                            alt="{{ env('APP_NAME')}} promo"
+                                            onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder-rect.jpg') }}';" style="width:100%;">
+                                      <div class="text-block">
+                                        <p>100</p>
+                                        <p class="cross">110</p>
+                                        <h4>Nature</h4>
+                                        <p>What a beautiful sunrise</p>
+                                      </div>
+                                    </div> -->
+
+                                    <div class="slider-container">
+                                       
+                                      <img class="d-block mw-100 img-fit overflow-hidden h-sm-auto h-md-320px h-lg-220px overflow-hidden"
+                                            src="{{ uploaded_asset($slider_images[$key]) }}"
+                                            alt="{{ env('APP_NAME')}} promo"
+                                            onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder-rect.jpg') }}';" style="width:100%;">
+                                      <!-- <div class="bottom-left">Bottom Left</div>
+                                      <div class="top-left">Top Left</div>
+                                      <div class="top-right">Top Right</div>
+                                      <div class="bottom-right">Bottom Right</div> -->
+                                      <div class="centered">
+                                            <h2>{{ json_decode(get_setting('home_slider_texts'), true)[$key] }}</h2>
+                                            <div class="price-weight">
+                                                <img src="" alt="">
+                                            </div>
+                                            @if (json_decode(get_setting('home_slider_sale_price'), true)[$key])
+                                                <div class="regular-price">
+                                                    <p>Rs. {{ json_decode(get_setting('home_slider_price'), true)[$key] ?? ""}}/-</p>
+                                                </div>
+                                            @endif
+                                            <div class="discounted-price">
+                                                @if (json_decode(get_setting('home_slider_sale_price'), true)[$key])
+                                                    <p>Rs. {{ json_decode(get_setting('home_slider_sale_price'), true)[$key] ?? ""}}/-</p>
+                                                @else
+                                                    <p>Rs. {{ json_decode(get_setting('home_slider_price'), true)[$key] ?? ""}}/-</p>
+                                                @endif
+                                            </div>
+                                            <div class="grams">
+                                                <p>{{ json_decode(get_setting('home_slider_gram'), true)[$key] ?? "grams"}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             @endforeach
                         </div>
@@ -37,7 +227,7 @@
         $flash_deal = get_featured_flash_deal();
     @endphp
     @if($flash_deal != null)
-    <section class="mb-2 mb-md-3 mt-2 mt-md-3">
+    <section class="mt-2 mt-md-3">
         <div class="container">
             <!-- Top Section -->
             <div class="d-flex flex-wrap mb-2 mb-md-3 align-items-baseline justify-content-between">
@@ -143,14 +333,14 @@
 
     <!-- Banner section 1 -->
     @if (get_setting('home_banner1_images') != null)
-    <div class="mb-2 mb-md-3 mt-2 mt-md-3">
+    <div class="mt-2 mt-md-3">
         <div class="container">
             @php 
                 $banner_1_imags = json_decode(get_setting('home_banner1_images')); 
                 $data_md = count($banner_1_imags) >= 2 ? 2 : 1;
             @endphp
             <div class="w-100">
-                <div class="aiz-carousel gutters-16 overflow-hidden arrow-inactive-none arrow-dark arrow-x-15" data-items="{{ count($banner_1_imags) }}" data-xxl-items="{{ count($banner_1_imags) }}" data-xl-items="{{ count($banner_1_imags) }}" data-lg-items="{{ $data_md }}" data-md-items="{{ $data_md }}" data-sm-items="1" data-xs-items="1" data-arrows="true" data-dots="false">
+                <div class="h-sec-carousel aiz-carousel gutters-16 overflow-hidden arrow-inactive-none arrow-dark arrow-x-15" data-items="{{ count($banner_1_imags) }}" data-xxl-items="{{ count($banner_1_imags) }}" data-xl-items="{{ count($banner_1_imags) }}" data-lg-items="{{ $data_md }}" data-md-items="{{ $data_md }}" data-sm-items="1" data-xs-items="1" data-arrows="true" data-dots="false">
                     @foreach ($banner_1_imags as $key => $value)
                         <div class="carousel-box overflow-hidden hov-scale-img">
                             <a href="{{ json_decode(get_setting('home_banner1_links'), true)[$key] }}" class="d-block text-reset overflow-hidden">
@@ -167,7 +357,7 @@
 
     <!-- Featured Categories -->
     @if (count($featured_categories) > 0)
-        <section class="mb-2 mb-md-3 mt-2 mt-md-3">
+        <section class="mt-2 mt-md-3 featured-categories">
             <div class="container">
                 <div class="bg-white">
                     <!-- Top Section -->
@@ -204,7 +394,7 @@
 
     <!-- Banner Section 2 -->
     @if (get_setting('home_banner2_images') != null)
-    <div class="mb-2 mb-md-3 mt-2 mt-md-3">
+    <div class="mt-2 mt-md-3">
         <div class="container">
             @php
                 $banner_2_imags = json_decode(get_setting('home_banner2_images'));
