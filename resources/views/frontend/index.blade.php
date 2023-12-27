@@ -85,8 +85,8 @@
         font-family: "Source Sans Pro", "Arial", sans-serif;
 
         position: absolute;
-        top: 41%;
-        left: 36%;
+        top: 45%;
+        left: 48%;
         transform: translate(-50%, -50%);
       }
       .centered h2 {
