@@ -41,7 +41,31 @@
 										<div class="col-md">
 											<div class="form-group">
 												<input type="hidden" name="types[]" value="home_slider_links">
-												<input type="text" class="form-control" placeholder="http://" name="home_slider_links[]" value="{{ json_decode(get_setting('home_slider_links'), true)[$key] }}">
+												<input type="text" class="form-control" placeholder="http://" name="home_slider_links[]" value="{{ json_decode(get_setting('home_slider_links'), true)[$key] ?? 'Link' }}">
+											</div>
+										</div>
+										<div class="col-md">
+											<div class="form-group">
+												<input type="hidden" name="types[]" value="home_slider_texts">
+												<input type="text" class="form-control" placeholder="Title" name="home_slider_texts[]" value="{{ json_decode(get_setting('home_slider_texts'), true)[$key] ?? 'title'}}" required>
+											</div>
+										</div>
+										<div class="col-md">
+											<div class="form-group">
+												<input type="hidden" name="types[]" value="home_slider_price">
+												<input type="text" class="form-control" placeholder="Price" name="home_slider_price[]" value="{{ json_decode(get_setting('home_slider_price'), true)[$key] ?? '0' }}" required>
+											</div>
+										</div>
+										<div class="col-md">
+											<div class="form-group">
+												<input type="hidden" name="types[]" value="home_slider_sale_price">
+												<input type="text" class="form-control" placeholder="Sale price" name="home_slider_sale_price[]" value="{{ json_decode(get_setting('home_slider_sale_price'), true)[$key] ?? '0'}}" required>
+											</div>
+										</div>
+										<div class="col-md">
+											<div class="form-group">
+												<input type="hidden" name="types[]" value="home_slider_gram">
+												<input type="text" class="form-control" placeholder="Gram" name="home_slider_gram[]" value="{{ json_decode(get_setting('home_slider_gram'), true)[$key] ?? 'Gram'}}" required>
 											</div>
 										</div>
 										<div class="col-md-auto">
@@ -81,6 +105,30 @@
 										<input type="text" class="form-control" placeholder="http://" name="home_slider_links[]">
 									</div>
 								</div>
+								<div class="col-md">
+									<div class="form-group">
+										<input type="hidden" name="types[]" value="home_slider_texts">
+										<input type="text" class="form-control" placeholder="Title" name="home_slider_texts[]" required>
+									</div>
+								</div>
+								<div class="col-md">
+									<div class="form-group">
+										<input type="hidden" name="types[]" value="home_slider_price">
+										<input type="text" class="form-control" placeholder="Price" name="home_slider_price[]" required>
+									</div>
+								</div>
+								<div class="col-md">
+									<div class="form-group">
+										<input type="hidden" name="types[]" value="home_slider_sale_price">
+										<input type="text" class="form-control" placeholder="Sale price" name="home_slider_sale_price[]" required>
+									</div>
+								</div>
+								<div class="col-md">
+									<div class="form-group">
+										<input type="hidden" name="types[]" value="home_slider_gram">
+										<input type="text" class="form-control" placeholder="Gram" name="home_slider_gram[]" required>
+									</div>
+								</div>
 								<div class="col-md-auto">
 									<div class="form-group">
 										<button type="button" class="mt-1 btn btn-icon btn-circle btn-sm btn-soft-danger" data-toggle="remove-parent" data-parent=".row">
@@ -88,6 +136,7 @@
 										</button>
 									</div>
 								</div>
+								
 							</div>'
 							data-target=".home-slider-target">
 							{{ translate('Add New') }}
