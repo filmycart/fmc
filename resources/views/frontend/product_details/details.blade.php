@@ -35,7 +35,7 @@
     </div>
     <div class="row align-items-center">
         <!-- Ask about this product -->
-        <div class="col-xl-3 col-lg-4 col-md-3 col-sm-4 mb-3">
+        <!-- <div class="col-xl-3 col-lg-4 col-md-3 col-sm-4 mb-3">
             <a href="javascript:void();" onclick="goToView('product_query')" class="text-primary fs-14 fw-600 d-flex">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32">
                     <g id="Group_25571" data-name="Group 25571" transform="translate(-975 -411)">
@@ -54,7 +54,7 @@
                 </svg>
                 <span class="ml-2 text-primary animate-underline-blue">{{ translate('Product Inquiry') }}</span>
             </a>
-        </div>
+        </div> -->
         <div class="col mb-3">
             @if ($detailedProduct->auction_product != 1)
                 <div class="d-flex">
@@ -99,7 +99,7 @@
         </div>
         <!-- Messase to seller -->
         @if (get_setting('conversation_system') == 1)
-            <div class="">
+            <!-- <div class="">
                 <button class="btn btn-sm btn-soft-warning btn-outline-warning hov-svg-white hov-text-white rounded-4"
                     onclick="show_chat_modal()">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
@@ -122,7 +122,7 @@
 
                     {{ translate('Message Seller') }}
                 </button>
-            </div>
+            </div> -->
         @endif
     </div>
 

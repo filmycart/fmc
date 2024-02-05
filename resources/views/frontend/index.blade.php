@@ -85,8 +85,8 @@
         font-family: "Source Sans Pro", "Arial", sans-serif;
 
         position: absolute;
-        top: 41%;
-        left: 36%;
+        top: 45%;
+        left: 48%;
         transform: translate(-50%, -50%);
       }
       .centered h2 {
@@ -378,10 +378,10 @@
                         @foreach ($featured_categories as $key => $category)
                             <div class="carousel-box position-relative text-center has-transition hov-scale-img hov-animate-outline border-right border-top border-bottom @if($key == 0) border-left @endif">
                                 <a href="{{ route('products.category', $category->slug) }}" class="d-block">
-                                    <img src="{{ uploaded_asset($category->banner) }}" class="lazyload h-130px mx-auto has-transition p-2 p-sm-4 mw-100"
+                                    <img src="{{ uploaded_asset($category->banner) }}" class="lazyload h-130px mx-auto has-transition p-2 mw-100"
                                         alt="{{ $category->getTranslation('name') }}" onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';">
                                 </a>
-                                <h6 class="text-dark mb-3 h-40px text-truncate-2">
+                                <h6 class="text-dark mb-3 h-15px text-truncate-2">
                                     <a class="text-reset fw-700 fs-14 hov-text-primary" href="{{ route('products.category', $category->slug) }}" title="{{  $category->getTranslation('name')  }}">{{ $category->getTranslation('name') }}</a>
                                 </h6>
                             </div>
