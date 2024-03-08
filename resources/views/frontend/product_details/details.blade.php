@@ -3,7 +3,6 @@
     <h1 class="mb-4 fs-16 fw-700 text-dark">
         {{ $detailedProduct->getTranslation('name') }}
     </h1>
-
     <div class="row align-items-center mb-3">
         <!-- Review -->
         @if ($detailedProduct->auction_product != 1)

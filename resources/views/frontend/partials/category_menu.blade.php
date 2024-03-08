@@ -47,7 +47,6 @@
                         <i class="las la-spinner la-spin la-3x opacity-90"></i>
                     </div>
                 </div> --}}
-
             </li>
         @endforeach
     </ul>
