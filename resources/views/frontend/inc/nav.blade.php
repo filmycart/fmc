@@ -16,7 +16,6 @@
             </button>
         </div>
     @endif
-
     <!-- Top Bar -->
     <div class="top-navbar bg-white z-1035 h-35px h-sm-auto" style="display:none;">
         <div class="container">
