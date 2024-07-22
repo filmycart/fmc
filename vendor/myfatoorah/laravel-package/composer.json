@@ -1,13 +1,13 @@
 {
     "name": "myfatoorah/laravel-package",
     "description": "The official MyFatoorah Payment Gateway for Laravel.",
-    "version": "2.1.0",
+    "version": "2.2.4",
     "type": "library",
     "license": [
         "GPL-3.0-only"
     ],
     "require": {
-        "myfatoorah/library": "~2.1.0"
+        "myfatoorah/library": "~2.2.4"
     },
     "autoload": {
         "psr-4": {

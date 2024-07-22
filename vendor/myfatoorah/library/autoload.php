@@ -8,17 +8,17 @@
  *
  * Created by MyFatoorah http://www.myfatoorah.com/
  * Developed By tech@myfatoorah.com
- * Date: 02/05/2023
+ * Date: 31/03/2024
  * Time: 12:00
  *
  * API Documentation on https://myfatoorah.readme.io/docs
  * Library Documentation and Download link on https://myfatoorah.readme.io/docs/php-library
  *
  * @author    MyFatoorah <tech@myfatoorah.com>
- * @copyright 2021 MyFatoorah, All rights reserved
+ * @copyright MyFatoorah, All rights reserved
  * @license   GNU General Public License v3.0
  */
-$mfVersion = '2.1';
+$mfVersion = '2.2';
 
 if (!in_array('curl', get_loaded_extensions())) {
     trigger_error('Kindly install and enable PHP cURL extension in your server.', E_USER_WARNING);
@@ -26,7 +26,7 @@ if (!in_array('curl', get_loaded_extensions())) {
 }
 
 $mfLibFolder = __DIR__ . '/src/';
-$mfLibFile   = $mfLibFolder . 'MyfatoorahApiV2.php';
+$mfLibFile   = $mfLibFolder . 'MyFatoorah.php';
 if (!is_writable($mfLibFile) || ((time() - filemtime($mfLibFile)) < 86400)) {
     return;
 }
@@ -34,9 +34,11 @@ if (!is_writable($mfLibFile) || ((time() - filemtime($mfLibFile)) < 86400)) {
 touch($mfLibFile);
 try {
     $mfCurl = curl_init("https://portal.myfatoorah.com/Files/API/php/library/$mfVersion/MyfatoorahLibrary.txt");
-    curl_setopt_array($mfCurl, array(
+    curl_setopt_array(
+        $mfCurl, array(
         CURLOPT_RETURNTRANSFER => true,
-    ));
+        )
+    );
 
     $mfResponse = curl_exec($mfCurl);
     $mfHttpCode = curl_getinfo($mfCurl, CURLINFO_HTTP_CODE);
@@ -58,15 +60,32 @@ try {
 function mfPutFileContent($mfLibFolder, $mfResponse)
 {
     $mfSplitFile = explode('class', $mfResponse);
-    
+
     $mfNamespace = '<?php namespace MyFatoorah\Library; ';
     $mfClass     = 'class ';
 
     $useExClass = 'use Exception; ';
-    $useMfClass = 'use MyFatoorah\Library\MyfatoorahApiV2; ';
+    $useMfClass = 'use MyFatoorah\Library\MyFatoorah; ';
 
     //namespace MyFatoorah\Library
-    file_put_contents($mfLibFolder . 'MyfatoorahApiV2.php', $mfNamespace . $useExClass . $mfClass . $mfSplitFile[1]);
-    file_put_contents($mfLibFolder . 'PaymentMyfatoorahApiV2.php', $mfNamespace . $useMfClass . $useExClass . $mfClass . $mfSplitFile[2]);
-    file_put_contents($mfLibFolder . 'ShippingMyfatoorahApiV2.php', $mfNamespace . $useMfClass . $mfClass . $mfSplitFile[3]);
+    file_put_contents($mfLibFolder . 'MyFatoorah.php', $mfNamespace . $useExClass . $mfClass . $mfSplitFile[1]);
+    file_put_contents($mfLibFolder . 'MyFatoorahHelper.php', $mfNamespace . $useExClass . $mfClass . $mfSplitFile[2]);
+
+    //namespace MyFatoorah\Library\API
+    $mfLibFolder .= 'API/';
+
+    $mfApiNamespace = '<?php namespace MyFatoorah\Library\API; ';
+    file_put_contents($mfLibFolder . 'MyFatoorahList.php', $mfApiNamespace . $useMfClass . $useExClass . $mfClass . $mfSplitFile[3]);
+    file_put_contents($mfLibFolder . 'MyFatoorahRefund.php', $mfApiNamespace . $useMfClass . $mfClass . $mfSplitFile[4]);
+    file_put_contents($mfLibFolder . 'MyFatoorahShipping.php', $mfApiNamespace . $useMfClass . $mfClass . $mfSplitFile[5]);
+    file_put_contents($mfLibFolder . 'MyFatoorahSupplier.php', $mfApiNamespace . $useMfClass . $mfClass . $mfSplitFile[6]);
+
+    //namespace MyFatoorah\Library\API\Payment
+    $mfLibFolder .= 'Payment/';
+
+    $mfApiPaymentNamespace = '<?php namespace MyFatoorah\Library\API\Payment; ';
+    $useMfListClass        = 'use MyFatoorah\Library\API\MyFatoorahList; ';
+    file_put_contents($mfLibFolder . 'MyFatoorahPayment.php', $mfApiPaymentNamespace . $useMfClass . $useExClass . $mfClass . $mfSplitFile[7]);
+    file_put_contents($mfLibFolder . 'MyFatoorahPaymentEmbedded.php', $mfApiPaymentNamespace . $useMfListClass . $mfClass . $mfSplitFile[8]);
+    file_put_contents($mfLibFolder . 'MyFatoorahPaymentStatus.php', $mfApiPaymentNamespace . $useExClass . $mfClass . $mfSplitFile[9]);
 }

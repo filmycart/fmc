@@ -9,6 +9,7 @@ Both MyFatoorah Laravel and PHP library composer packages are developed by [MyFa
 
 * Create MyFatoorah invoices.
 * Check the MyFatoorah payment status for invoice/payment.
+* Display the enabled gateways at your MyFatoorah account to be displayed on the checkout page.
 
 ## Installation
 1. Install the package via [myfatoorah/laravel-package](https://packagist.org/packages/myfatoorah/laravel-package) composer.
@@ -25,11 +26,17 @@ php artisan vendor:publish --provider="MyFatoorah\LaravelPackage\MyFatoorahServi
 
 3. To test the payment cycle, type the below URL onto your browser. Replace only the `{example.com}` with your site domain.
 
-```bash
+```
 https://{example.com}/myfatoorah
 ```
 
 4. Customize the **app/Http/Controllers/MyFatoorahController.php** file as per your site needs.
+
+5. Optional: call the the below URL onto your browser. Replace only the `{example.com}` with your site domain to see how to draw the available gateways on checkoutpages
+
+```
+https://{example.com}/myfatoorah/checkout?oid=22
+```
 
 <hr>
 

