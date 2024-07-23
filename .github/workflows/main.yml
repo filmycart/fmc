@@ -1,7 +1,7 @@
 on: 
   push:
     branches:
-    - filmycart-cicd
+    - dev_kiruba
 name: Deploy website on push
 jobs:
   web-deploy:
